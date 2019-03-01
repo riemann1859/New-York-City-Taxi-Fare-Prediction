@@ -68,8 +68,8 @@ def preparing_data(df):
     
     #we need to fix the categories in the columns 'departure-state', 'departure-county', 
     #'departure-zipcode', 'destination-state','destination-county','destination-zipcode'
-    # for different dataframes by this way we fix the number of features and their name
-    # after converting these columns into dummy variables. This is required in random forest application
+    # for different dataframes by this way we fix the number of features and their names
+    # after converting these columns into dummy variables. This is required in  random forest application
     
     df['departure-state'].cat.set_categories(state_categories,inplace=True)
     df['departure-county'].cat.set_categories(county_categories,inplace=True)
@@ -135,7 +135,7 @@ def preparing_data(df):
     df['short/long-distance']=df['short/long-distance'].astype('category')
     
     #the last step: convert categories into dummy variables
-    
+    #when the number of rows in df >3000000, ram problems become inevitable, we need to use sparse matrice
     if 'fare_amount' in df.columns:
         return pd.get_dummies(df.drop('fare_amount',axis=1), sparse=True), df['fare_amount']
     else:
