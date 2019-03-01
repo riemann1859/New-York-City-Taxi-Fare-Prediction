@@ -35,7 +35,7 @@ zipcode_categories=['10019', '10022', '10003', '10016', '10001', '10011', '10036
                     '11220', '10454', '11233', '10452', '11367', '11434', '07302', '11436',
                     '11432', '11355', '10462']
                     
-def preparing_data(df):
+def preparing_data(df): 
     # input is pandas dataframe
     
     #remove the column named key
