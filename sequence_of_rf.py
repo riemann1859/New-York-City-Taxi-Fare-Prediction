@@ -10,17 +10,14 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from preparing_data import preparing_data
 
-#divide the whole training into 50 parts randomly
+#divide the whole training into 10 parts randomly
 
 np.random.seed(22)
 x=np.arange(1,54273574)
 np.random.shuffle(x)
-parts=np.split(x[:50000000],25)
+parts=np.split(x[:50000000],10)
 
-#our strategy is that to avoid memory problems, instead of taking a training sample
-#of size 5000000, take a sample of size 1000000 and establish a random forest model on this 
-#sample and predict the test data, repeat this process 5 times, finally average the 
-#resulting 5 prediction sets 
+
 
 
 
@@ -38,7 +35,7 @@ types = {'fare_amount': 'float32',
 
     
 
-for i in range(10):
+for i in range(5):
     start_time = time.time()
     print(start_time)
     rows_chosen=list(parts[i])
@@ -83,8 +80,4 @@ add_pred='D:/datasets/kaggle/New York City Taxi Fare Prediction/pred18.csv'
 pred_submission.to_csv(add_pred, index=False)
 print("finish_time:",time.time())
 
-#4 tane 3.11(estimatorların toplam sayısı 200)
 
-#10 tane 3.09536 (estimatorların toplam sayısı 200)
-
-#5 tane (estimator)
